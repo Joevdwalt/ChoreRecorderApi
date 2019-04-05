@@ -56,7 +56,11 @@ namespace ChoreRecorderApi
                 {
                     OnAuthenticationFailed = context =>
                     {
-                        Console.WriteLine(context.Result.ToString());
+
+                        if (context != null && context.Result != null)
+                        {
+                            Console.WriteLine(context.Result.ToString());
+                        }
 
                         return Task.CompletedTask;
                     },
@@ -92,7 +96,7 @@ namespace ChoreRecorderApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-               
+
             }
             else
             {

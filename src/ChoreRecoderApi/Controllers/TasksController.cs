@@ -5,6 +5,7 @@ using ChoreRecorderApi.Model;
 using ChoreRecorderApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using DateExtentionMethods;
 
 namespace ChoreRecorderApi.Controllers
 {
@@ -28,6 +29,16 @@ namespace ChoreRecorderApi.Controllers
             return this.Ok(this.TaskService.GetAllTasksByUserId(userId));
         }
 
+        [HttpGet("gettasksbydate/&fromDate={fromDate}&toDate={toDate}")]
+
+        public async System.Threading.Tasks.Task<ActionResult<IEnumerable<ChoreRecorderApi.Model.Task>>> GetAllTasksByUserIdAndDueDate(DateTime fromDate, DateTime toDate)
+        {
+            var userId = this.User.Identity.Name;
+
+            var result = await this.TaskService.GetAllTasksByUserIdAndDueDate(userId, fromDate.StartOfDay(), toDate.EndOfDay());
+            return this.Ok(result);
+        }
+
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
@@ -40,6 +51,8 @@ namespace ChoreRecorderApi.Controllers
         public void Post(Task task)
         {
             task.OwnerId = this.User.Identity.Name;
+            task.CreateDate = DateTime.Now;
+
             this.TaskService.Create(task);
         }
 
@@ -47,7 +60,7 @@ namespace ChoreRecorderApi.Controllers
         [HttpPut("{id}")]
         public void Put(string id, Task task)
         {
-            
+
             this.TaskService.Update(id, task);
         }
 
