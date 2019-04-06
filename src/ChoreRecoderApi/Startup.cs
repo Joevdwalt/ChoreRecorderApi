@@ -33,8 +33,11 @@ namespace ChoreRecorderApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            // Map Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<ITaskTemplateService, TaskTemplateService>();
 
             services.AddAutoMapper();
             services.AddCors();

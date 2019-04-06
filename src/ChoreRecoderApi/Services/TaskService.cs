@@ -39,6 +39,7 @@ namespace ChoreRecorderApi.Services
         public Task Create(Task task)
         {
             task.Id = Guid.NewGuid().ToString();
+            task.Key = task.Id;
             var taskCollection = this.Db.GetCollection<Task>("Tasks");
 
             taskCollection.InsertOne(task);
