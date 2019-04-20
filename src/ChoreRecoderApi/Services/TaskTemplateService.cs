@@ -71,8 +71,7 @@ namespace ChoreRecorderApi.Services
                         DueDate = DateTime.Now,
                         Done = false,
                         OwnerId = userId,
-                        
-                        
+                        Points = template.Points
                     };
 
                     tasksToCreate.Add(taskToCreate);
@@ -83,7 +82,6 @@ namespace ChoreRecorderApi.Services
             {
                 this.TaskService.Create(createTask);
             }
-
         }
     }
 }

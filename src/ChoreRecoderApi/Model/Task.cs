@@ -9,6 +9,8 @@ namespace ChoreRecorderApi.Model
 
         public string Name { get; set; }
 
+        public int Points { get; set; }
+
         public DateTime CreateDate {get;set;}
 
         public DateTime DueDate {get;set;}
