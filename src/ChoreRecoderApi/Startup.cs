@@ -38,6 +38,7 @@ namespace ChoreRecorderApi
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<ITaskTemplateService, TaskTemplateService>();
+            services.AddScoped<IUserProfileService, UserProfileService>();
 
             services.AddAutoMapper();
             services.AddCors();

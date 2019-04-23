@@ -49,9 +49,7 @@ namespace ChoreRecorderApi.Services
         public void Update(string id, Task task)
         {
             var taskCollection = this.Db.GetCollection<Task>("Tasks");
-
             var result = taskCollection.ReplaceOne(t=> t.Id == id, task);
-
         }
     }
 }
